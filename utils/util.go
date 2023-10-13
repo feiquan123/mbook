@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/astaxie/beego"
+	"github.com/beego/beego"
 )
 
 //存储类型

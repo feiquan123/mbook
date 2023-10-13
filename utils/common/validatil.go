@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/validation"
 )
 
 var valid = validation.Validation{}

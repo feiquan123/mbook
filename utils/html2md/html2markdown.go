@@ -8,7 +8,7 @@ import (
 	"regexp"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/astaxie/beego/logs"
+	"github.com/beego/beego/logs"
 )
 
 var closeTag = map[string]string{

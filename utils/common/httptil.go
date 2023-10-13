@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/astaxie/beego/httplib"
+	"github.com/beego/beego/httplib"
 )
 
 //构造request请求。[如果需要gzip压缩，请自行在headers参数配置，但是处理响应体的时候，记得使用gzip解压缩]

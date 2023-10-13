@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/astaxie/beego"
+	"github.com/beego/beego"
 )
 
 func FormatBytes(size int64) string {

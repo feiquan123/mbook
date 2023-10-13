@@ -1,5 +1,5 @@
 package controllers
 
-type BookController struct{
+type BookController struct {
 	BaseController
 }

@@ -29,13 +29,13 @@ func dbInit(opts ...dbOpt) {
 
 	for i, opt := range opts {
 		if i == 0 {
-			orm.RegisterDataBase("default", "mysql", opt.String())
+			orm.RegisterDataBase("default", "mysql", beego.AppConfig.String(opt.String()))
 			if opt.Model == dbModelMaster {
 				orm.RunSyncdb("default", false, orm.Debug)
 			}
 		}
 
-		orm.RegisterDataBase(opt.DBName, "mysql", opt.String())
+		orm.RegisterDataBase(opt.DBName, "mysql", beego.AppConfig.String(opt.String()))
 		if opt.Model == dbModelMaster {
 			orm.RunSyncdb(opt.DBName, false, orm.Debug)
 		}
