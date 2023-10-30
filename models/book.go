@@ -1,6 +1,13 @@
 package models
 
-import "time"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/beego/beego/orm"
+)
 
 type Book struct {
 	BookID         int       `json:"book_id" orm:"column(book_id);pk;auto"`
@@ -30,4 +37,28 @@ type Book struct {
 
 func (b Book) TableName() string {
 	return TableNameBook
+}
+
+func (b *Book) HomeDate(pageIndex, pageSize, cid int, fields ...string) (books []Book, total int, err error) {
+	if len(fields) == 0 {
+		fields = append(fields, "book_id", "book_name", "identify", "cover", "order_index")
+	}
+	filedStr := "b." + strings.Join(fields, ", b.")
+	sqlFmt := fmt.Sprintf("select %%s from %s b left join %s c on b.book_id = c.book_id where c.category_id = %d",
+		new(BookCategory).TableName(), b.TableName(), cid)
+
+	sql := fmt.Sprintf(sqlFmt, filedStr)
+	sqlCount := fmt.Sprintf(sqlFmt, "count(*) cnt")
+
+	o := orm.NewOrm()
+	params := []orm.Params{}
+	if _, err = o.Raw(sqlCount).Values(&params); err != nil {
+		return
+	}
+	total, _ = strconv.Atoi(params[0]["cnt"].(string))
+
+	if _, err = o.Raw(sql).QueryRows(&books); err != nil {
+		return
+	}
+	return
 }

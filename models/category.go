@@ -26,3 +26,9 @@ func (c Category) GetCategories(pid int, status bool) (categories []Category, er
 	_, err = qs.OrderBy("-status", "sort", "title").All(categories)
 	return
 }
+
+func (c Category) Find(cid int) (category Category) {
+	category.ID = cid
+	orm.NewOrm().Read(&category)
+	return
+}

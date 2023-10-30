@@ -8,8 +8,8 @@ import (
 
 func init() {
 	// 首页 & 分类 & 详情
-	beego.Router("/", &controllers.HomeController{}, "get:Index") // 首页
-	// beego.Router("/explore", &controllers.ExploreController{}, "get:Index")     // 分类
+	beego.Router("/", &controllers.HomeController{}, "get:Index")           // 首页
+	beego.Router("/explore", &controllers.ExploreController{}, "get:Index") // 分类
 	// beego.Router("/books/:key", &controllers.DocumentController{}, "get:Index") // 分类
 
 	// // 读书
